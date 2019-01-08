@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="170dp" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="4dp"
+        android:layout_height="180dp">
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <TextView
+                android:id="@+id/idTitle"
+                android:text="Id:"
+                android:textSize="16sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/idMovie"
+                android:layout_width="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/idTitle"
+                app:layout_constraintTop_toTopOf="@id/idTitle"
+                android:layout_marginStart="8dp"
+                android:textSize="16sp"
+                android:text="fasdfsdf"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/nameTitle"
+                android:text="Name:"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/idTitle"
+                android:layout_marginTop="8dp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/idTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        <TextView
+                android:id="@+id/nameMovie"
+                android:layout_width="0dp"
+                app:layout_constraintTop_toBottomOf="@id/nameTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textSize="20sp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="Avengers"
+                android:layout_marginEnd="16dp"
+                android:layout_height="wrap_content"/>
+
+
+        <ImageView
+                android:id="@+id/favFalse"
+                android:src="@drawable/ic_favorite_border_black_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <ImageView
+                android:id="@+id/favTrue"
+                android:visibility="gone"
+                android:src="@drawable/ic_favorite_black_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </android.support.constraint.ConstraintLayout>
+
+
+
+
+</android.support.v7.widget.CardView>
