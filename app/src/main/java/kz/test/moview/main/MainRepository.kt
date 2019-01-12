@@ -1,6 +1,5 @@
-package kz.test.moview
+package kz.test.moview.main
 
-import android.content.SharedPreferences
 import android.util.Log
 import com.google.gson.Gson
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -14,12 +13,13 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import com.google.gson.reflect.TypeToken
+import kz.test.moview.ApiService
 import kz.test.moview.models.FavList
+import kz.test.moview.models.MovieDetail
 
 
-class MainRepository:MainContract.MainRepository{
-    var apiService:ApiService
+class MainRepository: MainContract.MainRepository {
+    var apiService: ApiService
     init {
         val interceptor = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message -> Log.d("API",message)})
         interceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -67,6 +67,11 @@ class MainRepository:MainContract.MainRepository{
             var newFavList = Gson().fromJson(json,FavList::class.java)
             return newFavList.favList
         }
+    }
+    fun getMovieDetail(id:Int):Observable<MovieDetail>{
+        return apiService.getMovieDetail(id, API_KEY)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
     }
 }
 

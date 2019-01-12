@@ -1,34 +1,36 @@
-package kz.test.moview
+package kz.test.moview.main
 
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v7.app.ActionBar
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
-import android.text.BoringLayout
-import android.util.Log
 import android.view.Menu
 import android.view.View
-import android.widget.ImageView
 import kotlinx.android.synthetic.main.activity_main.*
 import kz.test.moview.models.Result
-import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.movie_item.*
+import kz.test.moview.R
+import kz.test.moview.movie_detail.MovieDetailActivity
 
 
-class MainActivity : AppCompatActivity(),MainContract.MainView,AddFavListener {
-    lateinit var presenter:MainPresenter
+class MainActivity : AppCompatActivity(), MainContract.MainView,
+    AddFavListener,OnMovieClickListener {
+    lateinit var presenter: MainPresenter
     var isLoading = false
     var isLastPage = false
     var searchView:SearchView?=null
     var page = 1
     lateinit var items:ArrayList<Result>
     lateinit var faves:ArrayList<Int>
-    lateinit var movieAdapter:MovieListAdapter
+    lateinit var movieAdapter: MovieListAdapter
+    override fun showMovieDetail(id: Int) {
+        val intent = Intent(this,MovieDetailActivity::class.java)
+        intent.putExtra("movie_id",id)
+        startActivity(intent)
+    }
     override fun addtoFav(id: Int) {
         faves.add(id)
         presenter.saveFavList(faves)
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity(),MainContract.MainView,AddFavListener {
     override fun setMovieList(movies: ArrayList<Result>) {
         items.clear()
         items.addAll(movies)
-        movieAdapter = MovieListAdapter(this,items,faves)
+        movieAdapter = MovieListAdapter(this, items)
         movieList.adapter = movieAdapter
         movieList.layoutManager = GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false)
     }
@@ -140,6 +142,9 @@ class MainActivity : AppCompatActivity(),MainContract.MainView,AddFavListener {
 interface AddFavListener{
     fun addtoFav(id:Int)
     fun deleteFav(id:Int)
+}
+interface OnMovieClickListener{
+    fun showMovieDetail(id:Int)
 }
 
 const val API_KEY = "7880d16bc929086b4585cf3325a27642"

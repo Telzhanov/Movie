@@ -1,4 +1,4 @@
-package kz.test.moview
+package kz.test.moview.main
 
 import io.reactivex.Observable
 import kz.test.moview.models.MovieResponse
@@ -14,7 +14,7 @@ interface MainContract{
         fun setLastPage()
     }
     interface MainPresenter{
-        fun attachView(view:MainContract.MainView)
+        fun attachView(view: MainView)
         fun detachView()
         fun getMovies(page:Int)
         fun getMovies(page:Int, query:String)

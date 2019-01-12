@@ -1,12 +1,11 @@
-package kz.test.moview
+package kz.test.moview.main
 
 import android.annotation.SuppressLint
 import android.util.Log
-import io.reactivex.disposables.Disposables
 import kz.test.moview.models.Result
 
-class MainPresenter:MainContract.MainPresenter{
-    lateinit var view:MainContract.MainView
+class MainPresenter: MainContract.MainPresenter {
+    lateinit var view: MainContract.MainView
     lateinit var repository: MainContract.MainRepository
 
     override fun attachView(view: MainContract.MainView) {
